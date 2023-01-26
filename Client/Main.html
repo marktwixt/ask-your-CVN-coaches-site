@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ask Your CVN Coaches!</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <h2>Ask Your CVN Coaches!</h2>
+    <form id="question_form" action="/submit_question" method="post">
+      <label for="question">Your Question:</label>
+      <textarea name="question" id="question"></textarea>
+      <label for="name">Your Name (optional):</label>
+      <input type="text" name="name" id="name">
+      <input type="submit" value="Submit">
+    </form>
+    <div id="ski_technique_questions">
+      <h3>Ski Technique Questions</h3>
+    </div>
+    <div id="waxing_questions">
+      <h3>Waxing Questions</h3>
+    </div>
+    <div id="misc_questions">
+      <h3>Miscellaneous Questions</h3>
+    </div>
+  </body>
+   <script src="client.js"></script>
+</html>
