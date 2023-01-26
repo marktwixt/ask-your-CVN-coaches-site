@@ -1,18 +1,20 @@
 body {
-    background: linear-gradient(to bottom, #F30002, #F9A7A7);
+    background: url('../Images/skitrail.JPEG');
+    background-size: cover;
     color: #FFF8F4;
     font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-shadow: 1px 1px 2px #040802;
     height: 100vh;
   }
   
   #question_form {
     width: 80%;
     text-align: center;
-    background-color: #040802;
+    background: linear-gradient(to right, #F30002, #040802);
     padding: 20px;
     border-radius: 4px;
     box-shadow: 4px 4px 4px #040802;
@@ -21,7 +23,6 @@ body {
   #question_form label {
     font-size: 18px;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px #040802;
     color: #FFF8F4;
   }
   
