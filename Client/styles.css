@@ -15,7 +15,7 @@ body {
     background-color: #040802;
     padding: 20px;
     border-radius: 4px;
-    box-shadow: 2px 2px 2px #040802;
+    box-shadow: 4px 4px 4px #040802;
   }
   
   #question_form label {
