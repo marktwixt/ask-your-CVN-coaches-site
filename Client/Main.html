@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ask Your CVN Coaches!</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
-    <h2>Ask Your CVN Coaches!</h2>
-    <form id="question_form" action="/submit_question" method="post">
-      <label for="question">Your Question:</label>
-      <textarea name="question" id="question"></textarea>
-      <label for="name">Your Name (optional):</label>
-      <input type="text" name="name" id="name">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Ask Your CVN Coaches</title>
+</head>
+<body>
+  <div id="header">
+    <h1>Ask Your CVN Coaches</h1>
+  </div>
+  <div id="question_form">
+    <h2>Submit Your Question</h2>
+    <form id="question_submit">
+      <input type="text" id="name" placeholder="Your Name (optional)">
+      <input type="text" id="question" placeholder="Your Question">
       <input type="submit" value="Submit">
     </form>
-    <div id="ski_technique_questions">
-      <h3>Ski Technique Questions</h3>
+  </div>
+  <div id="faq">
+    <div id="ski_technique">
+      <h2>Ski Technique</h2>
+      <ul id="ski_technique_questions"></ul>
     </div>
-    <div id="waxing_questions">
-      <h3>Waxing Questions</h3>
+    <div id="waxing">
+      <h2>Waxing</h2>
+      <ul id="waxing_questions"></ul>
     </div>
-    <div id="misc_questions">
-      <h3>Miscellaneous Questions</h3>
+    <div id="misc">
+      <h2>Miscellaneous</h2>
+      <ul id="misc_questions"></ul>
     </div>
-  </body>
-   <script src="client.js"></script>
+  </div>
+  <script src="client.js"></script>
+</body>
 </html>

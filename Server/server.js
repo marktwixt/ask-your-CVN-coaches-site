@@ -1,46 +1,88 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const fs = require('fs')
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const Sequelize = require("sequelize");
+const bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+dotenv.config();
 
-app.post('/submit_question', (req, res) => {
-  let question = req.body.question
-  let name = req.body.name
-  if(name){
-    question = name + ' asked: ' + question
-  }
-  // Save the question to a database or file
-  fs.appendFile('questions.txt', question + '\n', (err) => {
-    if (err) throw err;
-    console.log('The question was saved!');
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
+});
+
+const port = process.env.SERVER_PORT || 4004;
+
+app.use(bodyParser.json());
+
+const Question = sequelize.define("question", {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  question: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  category: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  answered: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
+  answer: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+});
+
+app.get("/questions", (req, res) => {
+  Question.findAll().then((questions) => {
+    res.json(questions);
   });
-  res.status(200).send('Thank you for your question! Your question is: ' + question)
-})
+});
 
-app.get('/faq', (req, res) => {
-  // Read the questions from a database or file
-fs.readFile('questions.txt', 'utf8', (err, data) => {
-    if (err) throw err;
-    let faq = data.split("\n")
-    let ski_technique_questions = faq.filter(question => question.includes("technique"))
-    let waxing_questions = faq.filter(question => question.includes("wax"))
-    let misc_questions = faq.filter(question => !question.includes("technique") && !question.includes("wax"))
-    res.status(200).json({
-    ski_technique_questions,
-    waxing_questions,
-    misc_questions
-    })
+app.post("/questions", (req, res) => {
+  const { name, question, category } = req.body;
+  Question.create({ name, question, category }).then((question) => {
+    res.json(question);
+  });
+});
+
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
     });
-    })
-    
-    app.listen(5500, () => {
-    console.log('Server is listening on port 5500')
-    })
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
-    
-    
-    
-    
+const seed = async () => {
+  await Question.sync({ force: true });
+  await Question.bulkCreate([
+    {
+      name: "John",
+      question: "What is the best technique for climbing hills?",
+      category: "technique",
+    },
+    {
+      name: "Jane",
+      question: "What is the best wax for cold temperatures?",
+      category: "wax",
+    },
+    {
+      name: "Jim",
+      question: "What should I do if I fall during a race?",
+      category: "misc",
+    },
+  ]);
+};
+
+seed().catch((error) => {
+  console.error(error);
+});
