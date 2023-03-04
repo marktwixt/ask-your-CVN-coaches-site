@@ -32,6 +32,26 @@
       <ul id="misc_questions"></ul>
     </div>
   </div>
+  <!-- Admin Page -->
+  <div id="admin_page">
+    <h2>Admin Page</h2>
+    <form id="admin_login">
+      <input type="text" id="admin_username" placeholder="Username">
+      <input type="password" id="admin_password" placeholder="Password">
+      <input type="submit" value="Log In">
+    </form>
+    <div id="admin_content" style="display: none;">
+      <h3>Unanswered Questions</h3>
+      <ul id="unanswered_questions"></ul>
+      <h3>Answered Questions</h3>
+      <ul id="answered_questions"></ul>
+      <form id="answer_question">
+        <input type="text" id="answer" placeholder="Your Answer">
+        <input type="hidden" id="question_id">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
   <script src="client.js"></script>
 </body>
 </html>
