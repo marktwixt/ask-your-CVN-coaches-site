@@ -164,6 +164,23 @@ app.get("/user/questions", passport.authenticate("local"), async (req, res) => {
   }
 });
 
+app.post("/register", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const newUser = await User.create({ username, password });
+    req.login(newUser, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Error logging in." });
+      }
+      res.json({ username: newUser.username });
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error registering user." });
+  }
+});
+
 app.post("/user/questions", passport.authenticate("local"), async (req, res) => {
   try {
     const { question, category } = req.body;
