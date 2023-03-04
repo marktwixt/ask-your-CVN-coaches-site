@@ -145,11 +145,11 @@ sequelize.sync()
     console.error(error);
   });
 
-// Routes
-app.get("/questions", async (req, res) => {
+// Regular user routes
+app.get("/user/questions", passport.authenticate("local"), async (req, res) => {
   try {
     const questions = await Question.findAll({
-      where: { answered: false },
+      where: { userId: req.user.id },
       include: { model: User, attributes: ["username"] },
     });
     res.json(questions);
@@ -159,7 +159,7 @@ app.get("/questions", async (req, res) => {
   }
 });
 
-app.post("/questions", passport.authenticate("local"), async (req, res) => {
+app.post("/user/questions", passport.authenticate("local"), async (req, res) => {
   try {
     const { question, category } = req.body;
     const newQuestion = await req.user.createQuestion({
@@ -173,11 +173,47 @@ app.post("/questions", passport.authenticate("local"), async (req, res) => {
   }
 });
 
-app.put("/questions/:id", passport.authenticate("local"), async (req, res) => {
+app.put("/user/questions/:id", passport.authenticate("local"), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { answer } = req.body;
+    const question = await Question.findOne({
+      where: { id, userId: req.user.id }
+    });
+    if (!question) {
+      return res.status(404).json({ error: "Question not found." });
+    }
+    question.answered = true;
+    question.answer = answer;
+    await question.save();
+    res.json(question);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error updating question." });
+  }
+});
+
+// Admin routes
+app.get("/admin/questions", passport.authenticate("local"), async (req, res) => {
+  try {
+    const questions = await Question.findAll({
+      include: { model: User, attributes: ["username"] },
+    });
+    res.json(questions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error getting questions." });
+  }
+});
+
+app.put("/admin/questions/:id", passport.authenticate("local"), async (req, res) => {
   try {
     const { id } = req.params;
     const { answer } = req.body;
     const question = await Question.findByPk(id);
+    if (!question) {
+      return res.status(404).json({ error: "Question not found." });
+    }
     question.answered = true;
     question.answer = answer;
     await question.save();
