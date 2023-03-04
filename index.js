@@ -103,7 +103,12 @@ const User = sequelize.define('user', {
       const salt = bcrypt.genSaltSync(10);
       const hashedPassword = bcrypt.hashSync(value, salt);
       this.setDataValue('password', hashedPassword);
-    }
+    },
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   },
 });
 
