@@ -6,6 +6,7 @@ const session = require('express-session');
 const Sequelize = require('sequelize');
 const db = require('./db');
 const dotenv = require("dotenv");
+const bcrypt = require('bcrypt');
 
 const app = express();
 const port = process.env.SERVER_PORT || 4004;
@@ -33,7 +34,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     if (!user) {
       return done(null, false, { message: 'Incorrect username.' });
     }
-    const isValidPassword = await user.checkPassword(password);
+    const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return done(null, false, { message: 'Incorrect password.' });
     }
@@ -97,6 +98,11 @@ const User = sequelize.define('user', {
   password: {
     type: Sequelize.STRING,
     allowNull: false,
+    set(value) {
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(value, salt);
+      this.setDataValue('password', hashedPassword);
+    }
   },
 });
 
