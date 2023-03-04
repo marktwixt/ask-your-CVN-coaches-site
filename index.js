@@ -7,6 +7,7 @@ const Sequelize = require('sequelize');
 const db = require('./db');
 const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
+const { questionSchema, answerSchema, userSchema } = require('./validationSchema');
 
 const app = express();
 const port = process.env.SERVER_PORT || 4004;
