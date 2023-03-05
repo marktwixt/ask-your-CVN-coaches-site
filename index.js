@@ -5,7 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const Sequelize = require('sequelize');
-const db = require('./db');
+const { createAnswerTable, createQuestionTable, createUserTable } = require('./db');
 const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
 const { questionSchema, answerSchema, userSchema } = require('./validationSchema');
@@ -16,6 +16,18 @@ const port = process.env.SERVER_PORT || 4004;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+createQuestionTable()
+  .then(() => console.log('Question table created successfully'))
+  .catch(err => console.error('Error creating question table', err));
+
+createAnswerTable()
+  .then(() => console.log('Answer table created successfully'))
+  .catch(err => console.error('Error creating answer table', err));
+
+createUserTable()
+  .then(() => console.log('User table created successfully'))
+  .catch(err => console.error('Error creating user table', err));
+  
 // Passport.js configuration
 passport.serializeUser((user, done) => {
   done(null, user.id);

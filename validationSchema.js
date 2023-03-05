@@ -20,4 +20,8 @@ const questionSchema = Joi.object({
     password: Joi.string().required(),
 });
 
-module.exports = { questionSchema, answerSchema, userSchema };
+module.exports = { 
+    questionSchema, 
+    answerSchema, 
+    userSchema 
+};

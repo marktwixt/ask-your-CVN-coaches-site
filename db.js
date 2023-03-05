@@ -6,6 +6,15 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
+const createUserTable = () => {
+    const queryText =
+      `CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        username TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+      )`;
+    return pool.query(queryText);
+  };
 
 const createQuestionTable = () => {
   const queryText =
@@ -30,5 +39,6 @@ const createAnswerTable = () => {
 
 module.exports = {
   createQuestionTable,
-  createAnswerTable
+  createAnswerTable,
+  createUserTable
 };
