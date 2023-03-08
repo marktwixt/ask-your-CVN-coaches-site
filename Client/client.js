@@ -1,12 +1,12 @@
 const axios = require("axios");
 
 // Client-side code to submit a new question to the database
-document.querySelector("#submit-question").addEventListener("click", function(event) {
+document.querySelector("#submit-question-btn").addEventListener("click", function(event) {
   event.preventDefault();
   
-  const nameInput = document.querySelector("#name").value;
-  const questionInput = document.querySelector("#question").value;
-  const categoryInput = document.querySelector("#category").value;
+  const nameInput = document.querySelector("#name-input").value;
+  const questionInput = document.querySelector("#question-input").value;
+  const categoryInput = document.querySelector("#category-input").value;
 
   // Making a post request to the server to submit the new question to the database
   axios
@@ -18,9 +18,9 @@ document.querySelector("#submit-question").addEventListener("click", function(ev
     .then(response => {
       console.log(response.data);
       // Clearing the form fields after successful submission
-      document.querySelector("#name").value = "";
-      document.querySelector("#question").value = "";
-      document.querySelector("#category").value = "";
+      document.querySelector("#name-input").value = "";
+      document.querySelector("#question-input").value = "";
+      document.querySelector("#category-input").value = "";
     })
     .catch(error => {
       console.log(error);
@@ -31,8 +31,8 @@ document.querySelector("#submit-question").addEventListener("click", function(ev
 document.querySelector("#login-form").addEventListener("submit", function(event) {
   event.preventDefault();
   
-  const usernameInput = document.querySelector("#username").value;
-  const passwordInput = document.querySelector("#password").value;
+  const usernameInput = document.querySelector("#username-input").value;
+  const passwordInput = document.querySelector("#password-input").value;
 
   // Making a post request to the server to authenticate the user
   axios

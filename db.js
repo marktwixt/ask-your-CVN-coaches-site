@@ -16,6 +16,7 @@ const createUserTable = () => {
     return pool.query(queryText);
   };
 
+
 const createQuestionTable = () => {
   const queryText =
     `CREATE TABLE IF NOT EXISTS questions (

@@ -27,7 +27,7 @@ createAnswerTable()
 createUserTable()
   .then(() => console.log('User table created successfully'))
   .catch(err => console.error('Error creating user table', err));
-  
+
 // Passport.js configuration
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -75,6 +75,7 @@ dotenv.config();
 // Connect to the database
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
+  ssl: true,
 });
 
 // Define the Question model
