@@ -1,8 +1,8 @@
 body {
-  background: url("../Images/skitrail.JPEG");
+  background: url('../Images/skitrail.JPEG');
   background-size: cover;
-  color: #fff8f4;
-  font-family: "Open Sans", sans-serif;
+  color: #FFF8F4;
+  font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ body {
 #question_form {
   width: 80%;
   text-align: center;
-  background: linear-gradient(to right, #f30002, #040802);
+  background: linear-gradient(to right, #F30002, #040802);
   padding: 20px;
   border-radius: 4px;
   box-shadow: 4px 4px 4px #040802;
@@ -23,12 +23,12 @@ body {
 #question_form label {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #fff8f4;
+  color: #FFF8F4;
 }
 
 #question,
 #name {
-  background-color: #fff8f4;
+  background-color: #FFF8F4;
   color: #040802;
   border-radius: 4px;
   padding: 10px;
@@ -42,9 +42,9 @@ body {
 }
 
 #question_form input[type="submit"] {
-  background-color: #52c0e1;
+  background-color: #52C0E1;
   border: none;
-  color: #fff8f4;
+  color: #FFF8F4;
   cursor: pointer;
   padding: 10px 20px;
   text-transform: uppercase;
@@ -56,12 +56,12 @@ body {
 }
 
 #question_form input[type="submit"]:hover {
-  background-color: #f30002;
+  background-color: #F30002;
   transform: translateY(-2px);
 }
 
 .question-answers {
-  background-color: #fff8f4;
+  background-color: #FFF8F4;
   color: #040802;
   padding: 20px;
   border-radius: 4px;
@@ -74,7 +74,7 @@ body {
 .question-answers h4 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #52c0e1;
+  color: #52C0E1;
   text-shadow: 1px 1px 2px #040802;
 }
 
@@ -86,9 +86,11 @@ body {
 .question-answers .answer-author {
   font-size: 14px;
   font-style: italic;
-  color: #52c0e1;
+  color: #52C0E1;
   text-shadow: 1px 1px 2px #040802;
 }
+
+/* NEW STYLES ADDED BELOW */
 
 #question_list {
   width: 80%;
@@ -96,7 +98,7 @@ body {
 }
 
 .question {
-  background-color: #fff8f4;
+  background-color: #FFF8F4;
   color: #040802;
   padding: 20px;
   border-radius: 4px;
@@ -107,7 +109,7 @@ body {
 .question h4 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #f30002;
+  color: #F30002;
   text-shadow: 1px 1px 2px #040802;
 }
 
@@ -117,36 +119,34 @@ body {
 }
 
 #question_list a {
-  text-decoration: none;
-  color: #52c0e1;
-  transition: all 0.2s ease-in-out;
+text-decoration: none;
+color: #52C0E1;
+transition: all 0.2s ease-in-out;
 }
 
 #question_list a:hover {
-  color: #f30002;
+color: #F30002;
 }
 
 #question_list li {
-  margin-bottom: 10px;
+margin-bottom: 10px;
 }
 
 #question_list .question-author {
-  font-size: 14px;
-  font-style: italic;
-  color: #f30002;
-  text-shadow: 1px 1px 2px #040802;
+font-size: 14px;
+font-style: italic;
+color: #F30002;
+text-shadow: 1px 1px 2px #040802;
 }
 
-#registration_submit,
-#admin_login {
+#registration_submit, #admin_login {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
-}
-
-input[type="text"],
-input[type="password"] {
+  }
+  
+  input[type="text"], input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -154,9 +154,9 @@ input[type="password"] {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
-}
-
-input[type="submit"] {
+  }
+  
+  input[type="submit"] {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -166,24 +166,24 @@ input[type="submit"] {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-}
-
-input[type="submit"]:hover {
+  }
+  
+  input[type="submit"]:hover {
   background-color: #0077cc;
-}
-
-#new_username,
-#admin_username {
-  background-image: url("user-icon.png");
+  }
+  
+  #new_username, #admin_username {
+  background-image: url('user-icon.png');
   background-position: 10px 50%;
   background-repeat: no-repeat;
   padding-left: 40px;
-}
-
-#new_password,
-#admin_password {
-  background-image: url("lock-icon.png");
+  }
+  
+  #new_password, #admin_password {
+  background-image: url('lock-icon.png');
   background-position: 10px 50%;
   background-repeat: no-repeat;
   padding-left: 40px;
-}
+  }
+  
+  
