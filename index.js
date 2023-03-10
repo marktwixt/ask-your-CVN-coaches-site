@@ -16,17 +16,17 @@ const port = process.env.SERVER_PORT || 4004;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-createQuestionTable()
-  .then(() => console.log('Question table created successfully'))
-  .catch(err => console.error('Error creating question table', err));
+// createQuestionTable()
+//   .then(() => console.log('Question table created successfully'))
+//   .catch(err => console.error('Error creating question table', err));
 
-createAnswerTable()
-  .then(() => console.log('Answer table created successfully'))
-  .catch(err => console.error('Error creating answer table', err));
+// createAnswerTable()
+//   .then(() => console.log('Answer table created successfully'))
+//   .catch(err => console.error('Error creating answer table', err));
 
-createUserTable()
-  .then(() => console.log('User table created successfully'))
-  .catch(err => console.error('Error creating user table', err));
+// createUserTable()
+//   .then(() => console.log('User table created successfully'))
+//   .catch(err => console.error('Error creating user table', err));
 
 // Passport.js configuration
 passport.serializeUser((user, done) => {
@@ -75,7 +75,7 @@ dotenv.config();
 // Connect to the database
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
-  ssl: true,
+  ssl: false
 });
 
 // Define the Question model

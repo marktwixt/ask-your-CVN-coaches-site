@@ -10,7 +10,7 @@ document.querySelector("#submit-question-btn").addEventListener("click", functio
 
   // Making a post request to the server to submit the new question to the database
   axios
-    .post("/submitQuestion", {
+    .post("http://localhost:4004/submitQuestion", {
       name: nameInput,
       question: questionInput,
       category: categoryInput
@@ -28,15 +28,15 @@ document.querySelector("#submit-question-btn").addEventListener("click", functio
 });
 
 // Client-side code to handle user authentication
-document.querySelector("#login-form").addEventListener("submit", function(event) {
+document.querySelector("#registration_form").addEventListener("submit", function(event) {
   event.preventDefault();
   
-  const usernameInput = document.querySelector("#username-input").value;
-  const passwordInput = document.querySelector("#password-input").value;
+  const usernameInput = document.querySelector("#new_username").value;
+  const passwordInput = document.querySelector("#new_password").value;
 
   // Making a post request to the server to authenticate the user
   axios
-    .post("/login", {
+    .post("http://localhost:4004/login", {
       username: usernameInput,
       password: passwordInput
     })
@@ -46,7 +46,7 @@ document.querySelector("#login-form").addEventListener("submit", function(event)
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("accessToken", response.data.accessToken);
       // Redirecting to the dashboard page after successful login
-      window.location.href = "/dashboard";
+      window.location.href = "http://localhost:4004/dashboard";
     })
     .catch(error => {
       console.log(error);
@@ -55,14 +55,14 @@ document.querySelector("#login-form").addEventListener("submit", function(event)
 
 // Client-side code to retrieve and display questions and answers
 axios
-  .get("/getQuestions")
+  .get("http://localhost:4004/getQuestions")
   .then(response => {
     const questions = response.data;
     // Loop through the questions and display them in the appropriate areas
     questions.forEach(question => {
       const { category, question: questionText, answer } = question;
       if (category === "Ski Technique") {
-        const skiTechniqueQuestions = document.querySelector("#ski-technique-questions");
+        const skiTechniqueQuestions = document.querySelector("#ski_technique_questions");
         const newQuestion = document.createElement("p");
         newQuestion.textContent = questionText;
         skiTechniqueQuestions.appendChild(newQuestion);
@@ -72,7 +72,7 @@ axios
           skiTechniqueQuestions.appendChild(newAnswer);
         }
       } else if (category === "Waxing") {
-        const waxingQuestions = document.querySelector("#waxing-questions");
+        const waxingQuestions = document.querySelector("#waxing_questions");
         const newQuestion = document.createElement("p");
         newQuestion.textContent = questionText;
         waxingQuestions.appendChild(newQuestion);
@@ -82,7 +82,7 @@ axios
           waxingQuestions.appendChild(newAnswer);
         }
       } else {
-        const miscellaneousQuestions = document.querySelector("#miscellaneous-questions");
+        const miscellaneousQuestions = document.querySelector("#misc_questions");
         const newQuestion = document.createElement("p");
         newQuestion.textContent = questionText;
         miscellaneousQuestions.appendChild(newQuestion);
